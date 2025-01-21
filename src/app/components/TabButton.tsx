@@ -1,12 +1,20 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+// Define the variants for the motion animation
 const variants = {
   default: { width: 0 },
   active: { width: "calc(100% - 0.75rem)" },
 };
 
-const TabButton = ({ active, selectTab, children }) => {
+// Define the types for the props
+interface TabButtonProps {
+  active: boolean; // Indicates whether the tab is active or not
+  selectTab: () => void; // Function to handle the tab selection
+  children: React.ReactNode; // Can be any React node (string, JSX, etc.)
+}
+
+const TabButton: React.FC<TabButtonProps> = ({ active, selectTab, children }) => {
   const buttonClasses = active ? "text-white" : "text-[#ADB7BE]";
 
   return (

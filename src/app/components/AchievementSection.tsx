@@ -44,16 +44,9 @@ const AchievementsSection = () => {
                 {achievement.prefix}
                 <AnimatedNumbers
                   includeComma
-                  animateToNumber={parseInt(achievement.value)}
+                  animateToNumber={parseInt(achievement.value.replace(',', ''))} // Remove commas for correct parsing
                   locale="en-US"
                   className="text-white text-4xl font-bold"
-                  configs={(_, index) => {
-                    return {
-                      mass: 1,
-                      friction: 100,
-                      tensions: 140 * (index + 1),
-                    };
-                  }}
                 />
                 {achievement.postfix}
               </h2>
