@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 interface NavLinkProps {
-  href: string; // href is expected to be a string (URL)
-  title: string; // title is expected to be a string
+  href: string; 
+  title: string; 
 }
 
 const NavLink = ({ href, title }: NavLinkProps) => {
