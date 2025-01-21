@@ -3,13 +3,19 @@ import React, { useTransition, useState } from "react";
 import Image from "next/image";
 import TabButton from "./TabButton";
 
-const TAB_DATA = [
+// Change content type to React.ReactNode
+interface TabData {
+  title: string;
+  id: string;
+  content: React.ReactNode; // More general than JSX.Element
+}
+
+const TAB_DATA: TabData[] = [
   {
     title: "Skills",
     id: "skills",
     content: (
       <ul className="list-disc pl-2">
-  
         <li>Next.js</li>
         <li>Tailwind.css</li>
         <li>Html</li>
@@ -42,10 +48,10 @@ const TAB_DATA = [
 ];
 
 const AboutSection = () => {
-  const [tab, setTab] = useState("skills");
+  const [tab, setTab] = useState<string>("skills");
   const [isPending, startTransition] = useTransition();
 
-  const handleTabChange = (id:any) => {
+  const handleTabChange = (id: string) => {
     startTransition(() => {
       setTab(id);
     });
@@ -70,26 +76,24 @@ const AboutSection = () => {
               selectTab={() => handleTabChange("skills")}
               active={tab === "skills"}
             >
-              {" "}
-              Skills{" "}
+              Skills
             </TabButton>
             <TabButton
               selectTab={() => handleTabChange("education")}
               active={tab === "education"}
             >
-              {" "}
-              Education{" "}
+              Education
             </TabButton>
             <TabButton
               selectTab={() => handleTabChange("certifications")}
               active={tab === "certifications"}
             >
-              {" "}
-              Certifications{" "}
+              Certifications
             </TabButton>
           </div>
           <div className="mt-8">
-            {TAB_DATA.find((t) => t.id === tab).content}
+            {/* Now, this works without errors */}
+            {TAB_DATA.find((t) => t.id === tab)?.content}
           </div>
         </div>
       </div>
